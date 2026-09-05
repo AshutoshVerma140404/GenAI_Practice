@@ -19,9 +19,7 @@ template = PromptTemplate(
     partial_variables =  {'format_instruction' : parser.get_format_instructions()}    
 )
 
-prompt = template.format()
-result = model.invoke(prompt)
+chain = template | model | parser
 
-final_result = parser.parse(result.content)
-print(final_result['name'])
-print(type(final_result))
+result = chain.invoke({})
+print(result)
