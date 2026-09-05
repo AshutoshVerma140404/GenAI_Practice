@@ -1,15 +1,10 @@
-from langchain_huggingface import ChatHuggingFace, HuggingFaceEndpoint
+from langchain_google_genai import ChatGoogleGenerativeAI
 from dotenv import load_dotenv
 from langchain_core.prompts import PromptTemplate
 
 load_dotenv()
 
-llm = HuggingFaceEndpoint(
-    repo_id = "meta-llama/Llama-3.1-8B-Instruct",
-    task = "text-generation"
-)
-
-model = ChatHuggingFace(llm = llm)
+model = ChatGoogleGenerativeAI(model = "gemini-3.6-flash")
 
 #1st prompt detailed report
 template1 = PromptTemplate(
